@@ -9,6 +9,7 @@ import _ from 'lodash';
 	return {
 		word,
 		chars,
+		life: 10,
 		attempt: 1,
 		guess: [],
 		completed: false
@@ -43,7 +44,7 @@ export default class WordCard extends Component{
             {
                 Array.from(this.props.value).map((c, i)=> <CharacterCard value={c} key={i} activationHandler={this.activationHandler} attempt={this.state.attempt}/>)
               }
-					<p>Round : {this.state.attempt}</p>
+					<p>Life : {this.state.life-this.state.attempt}</p>
           <p>{this.state.completed? "you win" : ""}</p>
             </div>
         );
