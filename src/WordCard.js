@@ -32,7 +32,7 @@ export default class WordCard extends Component{
 					console.log("True")
 					this.setState({guess:[], completed: true})
 				}else{
-					this.setState({guess:[], attempt: this.state.attempt + 1})
+					this.setState({guess:[], attempt: this.state.attempt + 1,life : this.state.life - 1})
 				}
 			}
 		}
@@ -44,7 +44,8 @@ export default class WordCard extends Component{
             {
                 Array.from(this.props.value).map((c, i)=> <CharacterCard value={c} key={i} activationHandler={this.activationHandler} attempt={this.state.attempt}/>)
               }
-					<p>Life : {this.state.life-this.state.attempt}</p>
+					<p>Round : {this.state.attempt}</p>
+					<p>Life : {this.state.life}</p>
           <p>{this.state.completed? "you win" : ""}</p>
             </div>
         );
