@@ -42,7 +42,7 @@ export default class WordCard extends Component{
         return(
             <div>
             {
-                Array.from(this.props.value).map((c, i)=> <CharacterCard value={c} key={i} activationHandler={this.activationHandler} attempt={this.state.attempt}/>)
+                Array.from(this.state.chars).map((c, i)=> <CharacterCard value={c} key={i} activationHandler={this.activationHandler} attempt={this.state.attempt}/>)
               }
 					<p>Round : {this.state.attempt}</p>
 					<p>Life : {this.state.life}</p>
