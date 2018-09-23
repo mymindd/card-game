@@ -9,10 +9,11 @@ import _ from 'lodash';
 	return {
 		word,
 		chars,
-		life: 10,
+		life: 5,
 		attempt: 1,
 		guess: [],
-		completed: false
+		completed: false,
+		uncompleted : false
 	}
  }
 export default class WordCard extends Component{
@@ -21,6 +22,7 @@ export default class WordCard extends Component{
         this.state = prepareStateFromWord(this.props.value)
     }
     activationHandler = (c) => {
+			if(this.state.life > 0){
 			let guess = [this.state.guess]+c
 			// console.log(guess + "")`
 			this.setState({guess})
@@ -33,8 +35,11 @@ export default class WordCard extends Component{
 					this.setState({guess:[], completed: true})
 				}else{
 					this.setState({guess:[], attempt: this.state.attempt + 1,life : this.state.life - 1})
+					if(this.state.life === 1 )
+						this.setState({uncompleted: true})
 				}
 			}
+		}
 		}
 
 
@@ -46,7 +51,8 @@ export default class WordCard extends Component{
               }
 					<p>Round : {this.state.attempt}</p>
 					<p>Life : {this.state.life}</p>
-          <p>{this.state.completed? "You Winnnnn !!" : ""}</p>
+          <p>{this.state.completed? "You Winnnnn !! :D" : ""}</p>
+          <p>{this.state.uncompleted? "You Lose !! :(" : ""}</p>
             </div>
         );
     }
